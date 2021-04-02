@@ -14,15 +14,20 @@ const test = (
     </ol>
   </div>
 );
+const user = {
+  name: 'James',
+  age: 29,
+  location: 'Fort Collins',
+}
 const userName = 'James';
 const userAge = 29;
 const userLocation = 'Fort Collins';
 
 const testTwo = (
   <div>
-    <h1>{userName.toUpperCase()}</h1>
-    <p>{userAge}</p>
-    <p>{userLocation}</p>
+    <h1>{user.name.toUpperCase()}</h1>
+    <p>Age: {user.age}</p>
+    <p>City: {user.location}</p>
   </div>
 );
 

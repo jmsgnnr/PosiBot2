@@ -38,6 +38,11 @@ var test = React.createElement(
     )
   )
 );
+var user = {
+  name: 'James',
+  age: 29,
+  location: 'Fort Collins'
+};
 var userName = 'James';
 var userAge = 29;
 var userLocation = 'Fort Collins';
@@ -48,17 +53,19 @@ var testTwo = React.createElement(
   React.createElement(
     'h1',
     null,
-    userName.toUpperCase()
+    user.name.toUpperCase()
   ),
   React.createElement(
     'p',
     null,
-    userAge
+    'Age: ',
+    user.age
   ),
   React.createElement(
     'p',
     null,
-    userLocation
+    'City: ',
+    user.location
   )
 );
 
