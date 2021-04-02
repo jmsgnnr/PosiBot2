@@ -1,15 +1,9 @@
-'use strict';
-
 console.log('App is running!');
 
 // NEVER MANUALLY CHANGE THIS FILE USE SRC/APP.JS
 // JSX - JAVASCRIPT XML
-var test = React.createElement(
-  'p',
-  null,
-  'WHATEVER 33333!'
-);
+const test = <p>WHATEVER 33333!</p>;
 
-var appRoot = document.getElementById('app');
+const appRoot = document.getElementById('app');
 
 ReactDOM.render(test, appRoot);
