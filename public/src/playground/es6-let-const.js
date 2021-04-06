@@ -1,5 +1,3 @@
-'use strict';
-
 // can always reassign , no longer used
 // var base variables are function scoped 
 
@@ -10,15 +8,15 @@ console.log('nameVar', nameVar);
 // you can reassign without using let 
 // function scoped 
 
-var nameLet = 'Jen';
+let nameLet = 'Jen';
 nameLet = 'Julie';
-console.log('nameLet', nameLet);
+console.log('nameLet', nameLet)
 
 // cannot reassign
 // function scoped 
 
-var nameConst = 'James';
-console.log('nameConst', nameConst);
+const nameConst = 'James';
+console.log('nameConst', nameConst)
 
 // function getPetName() {
 //     var petName = 'Hal';
@@ -36,7 +34,7 @@ console.log('nameConst', nameConst);
 var fullName = 'Jms Gnnr';
 // declaration allows us to access outside of function scope
 // remember we cannot re-declare let when accessing
-var firstName = void 0;
+let firstName;
 
 if (fullName) {
     firstName = fullName.split(' ')[0];

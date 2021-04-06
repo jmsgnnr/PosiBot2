@@ -1,36 +1,49 @@
-console.log("App is running!");
+console.table("App is running!");
 
-// NEVER MANUALLY CHANGE THIS FILE USE SRC/APP.JS
-// JSX - JAVASCRIPT XML
-// you can only have one root element in jsx
+const app = {
+  title: "PosiBot V2",
+  subtitle: "A Random positivity generator in REACT",
+  options: ["One", "Two"],
+};
+
+const user = {
+  age: 29,
+  name: "Jms",
+  location: "Philly",
+};
+const options = app.options;
+
+function getLocation(location) {
+  if (location) {
+    return <p>Location : {location}</p>;
+  }
+}
+
+// function getOptions(options) {
+//   if (options.length > 0) {
+//     return <p> Here are your options: {app.options.length}</p>;
+//   } else {
+//     return "There are no options";
+//   }
+// }
+// {getOptions(options)}
+
 const test = (
   <div>
-    <h1>POSI-BOT2</h1>
-    <p>This is a react refactor project</p>
-    <ol>
-      <li>one</li>
-      <li>two</li>
-      <li>three</li>
-    </ol>
+  <h1>{app.title}</h1>
+    {app.subtitle && <p>description: {app.subtitle}</p>}
+   <p>{options.length > 0 ? 'Here are your options' : 'No options'}</p>
   </div>
 );
-const user = {
-  name: 'James',
-  age: 29,
-  location: 'Fort Collins',
-}
-const userName = 'James';
-const userAge = 29;
-const userLocation = 'Fort Collins';
 
 const testTwo = (
   <div>
-    <h1>{user.name.toUpperCase()}</h1>
-    <p>Age: {user.age}</p>
-    <p>City: {user.location}</p>
+    <h1>{user.name ? user.name : "Anonymous"}</h1>
+    {user.age && user.age >= 18 && <p>Age: {user.age}</p>}
+    {getLocation(user.location)}
   </div>
 );
 
 const appRoot = document.getElementById("app");
 
-ReactDOM.render(testTwo, appRoot);
+ReactDOM.render(test, appRoot);
