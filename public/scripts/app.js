@@ -1,48 +1,81 @@
-'use strict';
+"use strict";
 
-// can always reassign , no longer used
-// var base variables are function scoped 
+console.table("App is running!");
 
-var nameVar = 'James';
-var nameVar = 'Mike';
-console.log('nameVar', nameVar);
+var app = {
+  title: "PosiBot V2",
+  subtitle: "A Random positivity generator in REACT",
+  options: ["One", "Two"]
+};
 
-// you can reassign without using let 
-// function scoped 
+var user = {
+  age: 29,
+  name: "Jms",
+  location: "Philly"
+};
+var options = app.options;
 
-var nameLet = 'Jen';
-nameLet = 'Julie';
-console.log('nameLet', nameLet);
-
-// cannot reassign
-// function scoped 
-
-var nameConst = 'James';
-console.log('nameConst', nameConst);
-
-// function getPetName() {
-//     var petName = 'Hal';
-//     return petName
-// }
-// getPetName();
-// will not work because vars arent available outside of scope 
-// console.log(petName)
-
-//Block Scoping for let and const 
-// with const and let , 
-//we cannot access outside of the codeblocks they were defined in 
-
-
-var fullName = 'Jms Gnnr';
-// declaration allows us to access outside of function scope
-// remember we cannot re-declare let when accessing
-var firstName = void 0;
-
-if (fullName) {
-    firstName = fullName.split(' ')[0];
-    // var based vars are function scoped
-    // this is an if statement, not a function 
-    console.log(firstName);
+function getLocation(location) {
+  if (location) {
+    return React.createElement(
+      "p",
+      null,
+      "Location : ",
+      location
+    );
+  }
 }
 
-console.log(firstName);
+// function getOptions(options) {
+//   if (options.length > 0) {
+//     return <p> Here are your options: {app.options.length}</p>;
+//   } else {
+//     return "There are no options";
+//   }
+// }
+// {getOptions(options)}
+
+var test = React.createElement(
+  "div",
+  null,
+  React.createElement(
+    "h1",
+    null,
+    app.title
+  ),
+  app.subtitle && React.createElement(
+    "p",
+    null,
+    "description: ",
+    app.subtitle
+  ),
+  React.createElement(
+    "p",
+    null,
+    options.length > 0 ? 'Here are your options' : 'No options'
+  )
+);
+
+var count = 0;
+var addOne = function addOne() {
+  console.log('addOne');
+};
+var testTwo = React.createElement(
+  "div",
+  null,
+  React.createElement(
+    "h1",
+    null,
+    "Count:",
+    count
+  ),
+  React.createElement(
+    "button",
+    { onClick: addOne },
+    "+1"
+  )
+);
+console.log(testTwo);
+var appRoot = document.getElementById("app");
+
+ReactDOM.render(testTwo, appRoot);
