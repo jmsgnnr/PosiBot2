@@ -5,14 +5,9 @@ console.table("App is running!");
 var app = {
   title: "PosiBot V2",
   subtitle: "A Random positivity generator in REACT",
-  options: ["One", "Two"]
+  options: []
 };
 
-var user = {
-  age: 29,
-  name: "Jms",
-  location: "Philly"
-};
 var options = app.options;
 
 function getLocation(location) {
@@ -25,57 +20,89 @@ function getLocation(location) {
     );
   }
 }
+// will be called with event object aka 'e'
+var onFormSubmit = function onFormSubmit(e) {
+  e.preventDefault();
+  // points to element event starts on
+  // .elements contains a list of elements by name
+  var option = e.target.elements.option.value;
 
-// function getOptions(options) {
-//   if (options.length > 0) {
-//     return <p> Here are your options: {app.options.length}</p>;
-//   } else {
-//     return "There are no options";
-//   }
-// }
-// {getOptions(options)}
-
-var test = React.createElement(
-  "div",
-  null,
-  React.createElement(
-    "h1",
-    null,
-    app.title
-  ),
-  app.subtitle && React.createElement(
-    "p",
-    null,
-    "description: ",
-    app.subtitle
-  ),
-  React.createElement(
-    "p",
-    null,
-    options.length > 0 ? 'Here are your options' : 'No options'
-  )
-);
-
-var count = 0;
-var addOne = function addOne() {
-  console.log('addOne');
+  if (option) {
+    app.options.push(option);
+    e.target.elements.option.value = "";
+    renderTest();
+  }
 };
-var testTwo = React.createElement(
-  "div",
-  null,
-  React.createElement(
-    "h1",
-    null,
-    "Count:",
-    count
-  ),
-  React.createElement(
-    "button",
-    { onClick: addOne },
-    "+1"
-  )
-);
-console.log(testTwo);
+
+var removeAll = function removeAll() {
+  app.options = [];
+  renderTest();
+};
+
+var makeDecision = function makeDecision() {
+  var randomNum = Math.floor(Math.random() * app.options.length);
+  var option = app.options[randomNum];
+  alert(option);
+};
+
 var appRoot = document.getElementById("app");
 
-ReactDOM.render(testTwo, appRoot);
+var renderTest = function renderTest() {
+  var test = React.createElement(
+    "div",
+    null,
+    React.createElement(
+      "h1",
+      null,
+      app.title
+    ),
+    app.subtitle && React.createElement(
+      "p",
+      null,
+      "description: ",
+      app.subtitle
+    ),
+    React.createElement(
+      "p",
+      null,
+      options.length > 0 ? "Here are your options" : "No options"
+    ),
+    React.createElement(
+      "button",
+      { disabled: app.options.length === 0, onClick: makeDecision },
+      "What Should I Do?"
+    ),
+    React.createElement(
+      "button",
+      { onClick: removeAll },
+      "Remove all"
+    ),
+    React.createElement(
+      "ol",
+      null,
+
+      // adding key allows us to keep track of location within array on rerendering
+      app.options.map(function (option) {
+        return React.createElement(
+          "li",
+          { key: option },
+          option
+        );
+      })
+    ),
+    React.createElement(
+      "form",
+      { onSubmit: onFormSubmit },
+      React.createElement("input", { type: "text", name: "option" }),
+      React.createElement(
+        "button",
+        null,
+        "Add Option!"
+      )
+    )
+  );
+  ReactDOM.render(test, appRoot);
+};
+renderTest();
+
+//$ babel public/src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
