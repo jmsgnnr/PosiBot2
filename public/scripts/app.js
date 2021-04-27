@@ -9,17 +9,6 @@ var app = {
 };
 
 var options = app.options;
-
-function getLocation(location) {
-  if (location) {
-    return React.createElement(
-      "p",
-      null,
-      "Location : ",
-      location
-    );
-  }
-}
 // will be called with event object aka 'e'
 var onFormSubmit = function onFormSubmit(e) {
   e.preventDefault();

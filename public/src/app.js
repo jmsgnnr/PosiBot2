@@ -7,12 +7,6 @@ const app = {
 };
 
 const options = app.options;
-
-function getLocation(location) {
-  if (location) {
-    return <p>Location : {location}</p>;
-  }
-}
 // will be called with event object aka 'e'
 const onFormSubmit = (e) => {
   e.preventDefault();
